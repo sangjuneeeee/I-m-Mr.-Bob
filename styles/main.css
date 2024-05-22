@@ -1,0 +1,60 @@
+body,
+html {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
+
+.main-section {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f0f0f0;
+	font-size: 48px;
+}
+
+.animation-section {
+	position: relative;
+	height: 100vh;
+	background-color: #fff;
+	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.cards-container {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.card {
+	/* 캔버스 P형 비율 162.2 X 112.1 */
+	width: 700px;
+	height: 484.2px;
+	border-radius: 4px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	transition: transform 0.3s, box-shadow 0.3s;
+	background-image: url("../images/cavas_texture.jpg");
+	background-size: cover;
+	background-position: center;
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card:hover {
+	transform: scale(1.1);
+}
+
+.bob {
+	width: 30vw;
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	pointer-events: none;
+	filter: drop-shadow(10px 10px 20px rgba(0, 0, 0, 0.3));
+}
