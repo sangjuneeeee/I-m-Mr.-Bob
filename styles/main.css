@@ -69,3 +69,11 @@ html {
 	width: 100vw;
 	border: none;
 }
+
+/* 밥 아저씨 (제거?) */
+.bob {
+	position: sticky;
+	width: 20vw;
+	left: 100%;
+	bottom: 0;
+}
