@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Canvas Page</title>
+		<link rel="stylesheet" href="../styles/animation.css" />
+	</head>
+	<body class="reveal">
+		<div class="main-container">
+			<div class="main-section">
+				<h1>Canvas Page</h1>
+			</div>
+		</div>
+
+		<!-- 로딩 애니메이션 div -->
+		<div id="loader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+
+		<script>
+			// 로딩 시 애니메이션
+			document.addEventListener("DOMContentLoaded", function () {
+				setTimeout(() => {
+					document.body.classList.remove("reveal");
+					setTimeout(() => {
+						const loader = document.getElementById("loader");
+						loader.classList.add("hidden");
+					}, 1000);
+				}, 100);
+			});
+		</script>
+	</body>
+</html>

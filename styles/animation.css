@@ -1,0 +1,56 @@
+#loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100%;
+	pointer-events: none;
+}
+
+#loader > div {
+	width: 100vw;
+	height: 12.5%;
+	background: gray;
+	transition: transform 500ms;
+	transform: translateX(100%);
+}
+
+#loader > div:nth-child(1) {
+	transition-delay: 100ms;
+}
+
+#loader > div:nth-child(2) {
+	transition-delay: 200ms;
+}
+
+#loader > div:nth-child(3) {
+	transition-delay: 300ms;
+}
+
+#loader > div:nth-child(4) {
+	transition-delay: 400ms;
+}
+
+#loader > div:nth-child(5) {
+	transition-delay: 500ms;
+}
+
+#loader > div:nth-child(6) {
+	transition-delay: 600ms;
+}
+
+#loader > div:nth-child(7) {
+	transition-delay: 700ms;
+}
+
+#loader > div:nth-child(8) {
+	transition-delay: 800ms;
+}
+
+body.reveal #loader > div {
+	transform: translateX(0%);
+}
+
+.hidden {
+	visibility: hidden;
+}

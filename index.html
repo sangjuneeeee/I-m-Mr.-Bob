@@ -5,19 +5,40 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>I am Mr.Bob</title>
 		<link rel="stylesheet" href="styles/main.css" />
+		<link rel="stylesheet" href="styles/animation.css" />
 	</head>
 	<body>
-		<div class="main-section">
-			<h1>Main</h1>
-		</div>
-		<div class="animation-section" id="animation-section">
-			<div class="cards-container">
-				<div class="card">Card 1</div>
-				<div class="card">Card 2</div>
-				<div class="card">Card 3</div>
+		<div class="main-container">
+			<div class="main-section">
+				<h1>Main</h1>
 			</div>
-			<img class="bob" src="images/bob.png" />
 		</div>
-		<script src="/scripts/main.js"></script>
+
+		<nav class="nav">
+			<button onclick="showLoaderAndNavigate()">그림 그리기</button>
+		</nav>
+
+		<article class="gallery">
+			<div class="cards-container">
+				<ul class="cards">
+					<li class="card">Card 1</li>
+					<li class="card">Card 2</li>
+					<li class="card">Card 3</li>
+				</ul>
+			</div>
+		</article>
+
+		<div id="loader" class="hidden">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+
+		<script src="scripts/main.js"></script>
 	</body>
 </html>
