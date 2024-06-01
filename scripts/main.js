@@ -119,4 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			isScrolling = setTimeout(snapToCard, 50); // 스냅 트리거 시간을 줄여 빠르게 반응하도록 설정
 		}
 	});
+
+	var audio = document.getElementById("bgm");
+	audio.volume = 0.1;
 });

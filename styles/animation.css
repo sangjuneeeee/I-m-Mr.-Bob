@@ -5,12 +5,13 @@
 	width: 100vw;
 	height: 100%;
 	pointer-events: none;
+	z-index: 3;
 }
 
 #loader > div {
 	width: 100vw;
 	height: 12.5%;
-	background: gray;
+	background: #532e1c;
 	transition: transform 500ms;
 	transform: translateX(100%);
 }

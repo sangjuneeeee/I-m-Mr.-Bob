@@ -42,14 +42,13 @@ html {
 	z-index: -1;
 	width: 100%;
 	height: 100%;
-	background-image: url("../images/museum2.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	-webkit-filter: blur(5px);
 	-moz-filter: blur(5px);
 	-o-filter: blur(5px);
 	-ms-filter: blur(5px);
-	filter: blur(5px);
+	filter: blur(3px);
 }
 
 .cards-container {
@@ -58,7 +57,7 @@ html {
 	align-items: center;
 	flex-direction: column;
 	gap: 20px;
-	margin-top: 20px;
+	margin-top: 180px;
 	padding-top: 40px;
 	padding-bottom: 250px;
 }
@@ -95,14 +94,24 @@ html {
 }
 
 .nav {
-	height: 110px;
+	z-index: 1;
+	position: sticky;
+	top: 0;
+	height: 80px;
 	width: 100vw;
+	border-radius: 0px 0px 20px 20px;
 }
 
 .nav > button {
+	background-color: #532e1c;
 	height: 100%;
 	width: 100%;
 	border: none;
+	border-radius: 0px 0px 20px 20px;
+	opacity: 0.8;
+
+	font-size: 40px;
+	color: white;
 }
 
 .bob {
@@ -126,6 +135,7 @@ html {
 	opacity: 0;
 	transition: visibility 0s, opacity 0.5s linear;
 	cursor: pointer;
+	z-index: 2;
 }
 
 .modal-content {
