@@ -10,17 +10,55 @@ function showLoaderAndNavigate() {
 		}, 1300);
 	}, 100); // 100ms 후에 reveal 클래스를 추가하여 애니메이션 시작
 }
+function showModal(card) {
+	const modal = document.getElementById("modal");
+	const modalContent = modal.querySelector(".modal-content");
+
+	modalContent.style.backgroundImage = card.style.backgroundImage;
+	modalContent.style.backgroundSize = card.style.backgroundSize;
+	modalContent.style.backgroundPosition = card.style.backgroundPosition;
+	modal.classList.add("visible");
+
+	modalContent.onmousemove = (e) => {
+		const rect = modalContent.getBoundingClientRect();
+		const x = (e.clientX - rect.left - rect.width / 2) / 25;
+		const y = -(e.clientY - rect.top - rect.height / 2) / 25;
+		requestAnimationFrame(() => {
+			modalContent.style.setProperty("--mouseX", x);
+			modalContent.style.setProperty("--mouseY", y);
+		});
+	};
+
+	modalContent.onmouseleave = () => {
+		modalContent.style.setProperty("--mouseX", 0);
+		modalContent.style.setProperty("--mouseY", 0);
+	};
+}
+function hideModal(event) {
+	const modal = document.getElementById("modal");
+	if (event.target === modal) {
+		modal.classList.remove("visible");
+	}
+}
 
 document.addEventListener("DOMContentLoaded", function () {
 	document.addEventListener("scroll", function () {
 		const mainSection = document.querySelector(".main-section");
 		const cards = document.querySelectorAll(".card");
+		const layers = document.querySelectorAll(".layer");
 		const scrollY = window.scrollY;
 		const viewportHeight = window.innerHeight;
 
 		// 메인 섹션 글씨 크기 조절
 		const scaleFactor = Math.min(1 + scrollY / viewportHeight, 2);
 		mainSection.style.fontSize = `${48 * scaleFactor}px`;
+
+		// 패럴랙스 효과
+		layers.forEach((layer, index) => {
+			const depth = index === 0 ? 0.4 : 300;
+			const scale = 1 + (scrollY / (viewportHeight * 5)) * depth;
+			layer.style.transform = `scale(${scale})`;
+		});
 
 		// 카드 상태 업데이트
 		cards.forEach((card) => {

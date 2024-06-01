@@ -20,7 +20,20 @@ html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	transition: font-size 0.3s;
+	overflow: hidden;
+}
+
+.layer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	object-fit: cover; /* 이미지가 화면에 꽉 차게 함 */
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+h1 {
+	position: relative;
+	z-index: 3;
 }
 
 .cards-container {
@@ -47,6 +60,7 @@ html {
 	background-size: cover;
 	background-position: center;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
 }
 
 .card:hover {
@@ -60,20 +74,58 @@ html {
 }
 
 .nav {
-	height: 100px;
+	height: 110px;
 	width: 100vw;
 }
 
 .nav > button {
-	height: 100px;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	border: none;
 }
 
-/* 밥 아저씨 (제거?) */
 .bob {
 	position: sticky;
-	width: 20vw;
+	width: 30vw;
 	left: 100%;
 	bottom: 0;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: rgba(0, 0, 0, 0.5);
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s linear;
+	cursor: pointer;
+}
+
+.modal-content {
+	width: 800px;
+	height: 554.4px;
+	background: blueviolet;
+	border-radius: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	transition: transform 0.1s, box-shadow 0.1s;
+	will-change: transform;
+}
+
+.modal.visible {
+	visibility: visible;
+	opacity: 1;
+}
+
+.modal-content:hover {
+	transform: perspective(1000px) rotateY(calc(var(--mouseX) * 1deg))
+		rotateX(calc(var(--mouseY) * 1deg));
 }
