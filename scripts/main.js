@@ -79,6 +79,26 @@ document.addEventListener("DOMContentLoaded", function () {
 				card.classList.add("next");
 			}
 		});
+
+		// 커튼 효과
+		const leftCurtain = document.querySelector(".curtain-left");
+		const rightCurtain = document.querySelector(".curtain-right");
+		const startScroll = viewportHeight;
+		const endScroll = viewportHeight * 1.5;
+
+		if (scrollY >= startScroll && scrollY <= endScroll) {
+			const progress = (scrollY - startScroll) / (endScroll - startScroll);
+			const offset = 100 * progress;
+
+			leftCurtain.style.transform = `translateX(${offset}%)`;
+			rightCurtain.style.transform = `translateX(${-offset}%)`;
+		} else if (scrollY < startScroll) {
+			leftCurtain.style.transform = "translateX(-100%)";
+			rightCurtain.style.transform = "translateX(100%)";
+		} else if (scrollY > endScroll) {
+			leftCurtain.style.transform = "translateX(100%)";
+			rightCurtain.style.transform = "translateX(-100%)";
+		}
 	});
 
 	// 스크롤 스냅 함수
