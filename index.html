@@ -12,7 +12,7 @@
 			<div class="main-section">
 				<img src="./images/layer_1.png" class="layer" id="layer-1" />
 				<img src="./images/layer_0.png" class="layer" id="layer-0" />
-				<h1>Main</h1>
+				<img id="logo" src="./images/logo.png" />
 			</div>
 		</div>
 
@@ -23,14 +23,28 @@
 		<article class="gallery">
 			<div class="cards-container">
 				<ul class="cards">
-					<li class="card" onclick="showModal(this)">Card 1</li>
-					<li class="card" onclick="showModal(this)">Card 2</li>
-					<li class="card" onclick="showModal(this)">Card 3</li>
-					<li class="card" onclick="showModal(this)">Card 4</li>
-					<li class="card" onclick="showModal(this)">Card 5</li>
-					<li class="card" onclick="showModal(this)">Card 6</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
+					<li class="card" onclick="showModal(this)">
+						<img class="frame" src="./images/frame.png" alt="Frame" />
+					</li>
 				</ul>
 			</div>
+			<img class="galleryBackground" src="./images/museum.png" />
+			<img class="bob" src="./images/bob.png" />
 		</article>
 
 		<div id="loader" class="hidden">
@@ -45,7 +59,9 @@
 		</div>
 
 		<div id="modal" class="modal hidden" onclick="hideModal(event)">
-			<div class="modal-content"></div>
+			<div class="modal-content">
+				<img class="modalFrame" src="./images/frame.png" alt="Frame" />
+			</div>
 		</div>
 
 		<script src="scripts/main.js"></script>
