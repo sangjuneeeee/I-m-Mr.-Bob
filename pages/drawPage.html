@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/css_drawPage.css" />
+    <title>drawPage</title>
+</head>
+
+<body>
+    <div id="wordDisplay" class="display">제시어: </div>
+    <div class="water-container">
+        <div class="water-fill" id="waterFill"></div>
+    </div>
+    <div class="controls">
+        <div id="timerDisplay" class="display">타이머 : </div>
+    </div>
+    <canvas id="jsCanvas" class="canvas"></canvas>
+    <div class="controls__btns">
+        <button id="Brush">브러쉬</button>
+        <button id="Erase">지우개</button>
+        <input type="color" id="Color" />
+        <input type="range" id="Range" min="1" max="10" value="1">
+        <button id="startTimer">타이머 시작</button>
+        <button id="clearCanvas">모두 지우기</button>
+    </div>
+
+    <div class="point">
+        <div class="water1" id="water-1"></div>
+    </div>
+
+    <div class="point">
+        <div class="water1" id="water-1"></div>
+    </div>
+    <script src="../scripts/js_drawPage.js"></script>
+</body>
+
+</html>
