@@ -8,7 +8,6 @@ const startTimerBtn = document.getElementById("startTimer");
 const clearCanvasBtn = document.getElementById("clearCanvas");
 const timerDisplay = document.getElementById("timerDisplay");
 const wordDisplay = document.getElementById("wordDisplay");
-const hourglassCanvas = document.getElementById("hourglassCanvas");
 
 const INITIAL_COLOR = "#2c2c2c";
 const INITIAL_LINEWIDTH = 5.0;
@@ -88,6 +87,7 @@ function startTimer() {
         }
     }, 1000);
 }
+
 
 function handleRangeChange(event) {
     const size = event.target.value;

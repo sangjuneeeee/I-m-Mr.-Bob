@@ -1,9 +1,34 @@
 body {
-    background-color: #3c3c3c;
+    background-color: #fffffff9;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding-top: 50px;
+    margin: 0;
+    height: 100vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 
 .canvas {
@@ -14,19 +39,20 @@ body {
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
-.constrols__btns {
+.controls__btns {
     background-color: white;
     padding: 5px 10px;
     text-align: center;
-    border-radius: 5px;
+    border-radius: 15px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-    border: 2px soild rgba(0, 0, 0, 0.2);
-    color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-input[type="range"] {
-    display: block;
-    margin: 10px auto;
+.controls__btns button,
+.controls__btns input {
+    margin: 5px 0;
 }
 
 .display {
@@ -34,70 +60,55 @@ input[type="range"] {
     font-size: 20px;
 }
 
-.hourglass {
-    border: 1px solid black;
-    width: 100px;
-    height: 200px;
+.Background {
+    position: fixed;
+    top: -19%;
+    z-index: -2;
+    width: 70%;
+    height: 170%;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-@keyframes move {
+.water-container {
+    width: 300px;
+    height: 450px;
+    border: 2px solid #fff;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.water-fill {
+    width: 3000px;
+    height: 3000px;
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: -400%;
+    border-radius: 45%;
+    background: rgba(48, 189, 255, 0.8);
+    animation: rotate 5000ms infinite linear;
+}
+
+@keyframes rotate {
     100% {
         transform: rotate(360deg);
     }
 }
 
-.wrap {
-    width: 500px;
-    height: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.water-container {
-    width: 150px;
-    height: 300px;
-    border: 2px solid #fff;
-    overflow: hidden;
-    position: absolute;
-    top: 24%;
-    left: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.water-fill {
-    width: 600px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: -140%;
-    border-radius: 40%;
-    background: rgba(3, 169, 244, 0.8);
-    animation: move 3s infinite linear;
-}
-
-.point {
-    width: 150px;
-    height: 300px;
-    border: 2px solid #fff;
-    position: absolute;
-    top: 24%;
-    left: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.water-1 {
-    width: 600px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: -140%;
-    border-radius: 40%;
-    background: rgba(3, 169, 244, 0.8);
-    animation: move 3s infinite linear;
+    .canvas,
+    .water-container,
+    .controls__btns {
+        width: 90%;
+        margin: 5px 0;
+    }
 }
