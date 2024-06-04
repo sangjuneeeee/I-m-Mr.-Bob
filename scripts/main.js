@@ -14,26 +14,37 @@ function showModal(card) {
 	const modal = document.getElementById("modal");
 	const modalContent = modal.querySelector(".modal-content");
 
-	modalContent.style.backgroundImage = card.style.backgroundImage;
+	modalContent.style.backgroundImage = `${card.style.backgroundImage}, radial-gradient(circle at center, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0))`;
 	modalContent.style.backgroundSize = card.style.backgroundSize;
 	modalContent.style.backgroundPosition = card.style.backgroundPosition;
 	modal.classList.add("visible");
 
 	modalContent.onmousemove = (e) => {
 		const rect = modalContent.getBoundingClientRect();
-		const x = (e.clientX - rect.left - rect.width / 2) / 25;
-		const y = -(e.clientY - rect.top - rect.height / 2) / 25;
+		const x = ((e.clientX - rect.left) / rect.width) * 100;
+		const y = ((e.clientY - rect.top) / rect.height) * 100;
+		const lightX = 100 - x;
+		const lightY = 100 - y;
 		requestAnimationFrame(() => {
-			modalContent.style.setProperty("--mouseX", x);
-			modalContent.style.setProperty("--mouseY", y);
+			modalContent.style.setProperty("--mouseX", `${x}%`);
+			modalContent.style.setProperty("--mouseY", `${y}%`);
+			modalContent.style.setProperty("--lightX", `${lightX}%`);
+			modalContent.style.setProperty("--lightY", `${lightY}%`);
+			modalContent.style.transform = `perspective(1000px) rotateY(${(x - 50) / 5}deg) rotateX(${
+				-(y - 50) / 5
+			}deg)`;
 		});
 	};
 
 	modalContent.onmouseleave = () => {
-		modalContent.style.setProperty("--mouseX", 0);
-		modalContent.style.setProperty("--mouseY", 0);
+		modalContent.style.setProperty("--mouseX", "50%");
+		modalContent.style.setProperty("--mouseY", "50%");
+		modalContent.style.setProperty("--lightX", "50%");
+		modalContent.style.setProperty("--lightY", "50%");
+		modalContent.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
 	};
 }
+
 function hideModal(event) {
 	const modal = document.getElementById("modal");
 	if (event.target === modal) {

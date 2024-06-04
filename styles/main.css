@@ -168,9 +168,22 @@ html {
 	opacity: 1;
 }
 
-.modal-content:hover {
-	transform: perspective(1000px) rotateY(calc(var(--mouseX) * 1deg))
-		rotateX(calc(var(--mouseY) * 1deg));
+.modal-content {
+	width: 800px;
+	height: 553.37px;
+	background-image: url("../images/canvas_texture.jpg"),
+		radial-gradient(
+			circle at var(--lightX) var(--lightY),
+			rgba(255, 255, 255, 0.6),
+			rgba(255, 255, 255, 0)
+		);
+	background-size: cover;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	transition: transform 0.1s, box-shadow 0.1s;
+	will-change: transform, background-position;
+	background-blend-mode: multiply;
 }
 
 /* 커튼 효과를 위한 추가 CSS */
@@ -201,4 +214,19 @@ html {
 
 .curtain-right {
 	right: -150%;
+}
+
+#bgm {
+	position: fixed;
+	opacity: 0.1;
+	transition: 1s ease;
+	top: 1vh;
+	left: 77%;
+	width: 20vw;
+	height: 20px;
+	z-index: 4;
+}
+
+#bgm:hover {
+	opacity: 1;
 }
