@@ -3,9 +3,9 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 50px;
+    padding-top: 10px;
     margin: 0;
-    height: 100vh;
+    height: 100%;
 }
 
 .header {
@@ -32,7 +32,7 @@ body {
 }
 
 .canvas {
-    width: 500px;
+    width: 700px;
     height: 500px;
     background-color: white;
     border-radius: 15px;
@@ -40,7 +40,7 @@ body {
 }
 
 .controls__btns {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     padding: 5px 10px;
     text-align: center;
     border-radius: 15px;
@@ -71,9 +71,9 @@ body {
 }
 
 .water-container {
-    width: 300px;
+    width: 250px;
     height: 450px;
-    border: 2px solid #fff;
+    border: 2px solid rgba(255, 255, 255, 0);
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -109,6 +109,12 @@ body {
     .water-container,
     .controls__btns {
         width: 90%;
-        margin: 5px 0;
+        margin: 5px 0px;
     }
+}
+
+.color-option {
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
 }

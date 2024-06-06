@@ -23,46 +23,38 @@
         <div id="wordDisplay" class="display">제시어: </div>
         <div id="timerDisplay" class="display">타이머 : </div>
     </div>
-
     <div class="container">
         <div class="col">
+            <button type="button" class="btn btn-secondary" id="saveCanvas">저장</button>
+            <button type="button" class="btn btn-secondary" id="loadCanvas">불러오기</button>
+            <button type="button" class="btn btn-secondary" id="deleteCanvas">삭제</button>
             <div class="water-container">
                 <div class="water-fill" id="waterFill"></div>
             </div>
         </div>
         <div class="col text-center">
+            <button type="button" class="btn btn-secondary" id="startTimer">시작</button>
+            <button type="button" class="btn btn-secondary" id="clearCanvas">모두 지우기</button>
             <canvas id="jsCanvas" class="canvas"></canvas>
         </div>
         <div class="col">
             <div class="controls__btns">
-                <button id="Brush">브러쉬</button>
-                <button id="Erase">지우개</button>
+                <button type="button" class="btn btn-secondary1" id="Brush">브러쉬</button>
+                <button type="button" class="btn btn-secondary2" id="Erase">지우개</button>
                 <input type="color" id="Color" />
-                <input type="range" id="Range" min="1" max="10" value="1">
-                <button id="startTimer">시작</button>
-                <button id="clearCanvas">모두 지우기</button>
+                <input type="range" id="Range" min="1" max="10" value="4">
+                <div class="color-options">
+                    <div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
+                    <div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
+                    <div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
+                    <div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
+                    <div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
+                    <div class="color-option" style="background-color: #9b59b6" data-color="#9b59b6"></div>
+                    <div class="color-option" style="background-color: #000000" data-color="#34495e"></div>
+                </div>
             </div>
         </div>
     </div>
-
-    <!--
-    <div class="color-options">
-        <input type="color" id="color" />
-        <div class="color-option" style="background-color: #1abc9c" data-color="#1abc9c"></div>
-        <div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
-        <div class="color-option" style="background-color: #34495e" data-color="#34495e"></div>
-        <div class="color-option" style="background-color: #27ae60" data-color="#27ae60"></div>
-        <div class="color-option" style="background-color: #8e44ad" data-color="#8e44ad"></div>
-        <div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
-        <div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
-        <div class="color-option" style="background-color: #95a5a6" data-color="#95a5a6"></div>
-        <div class="color-option" style="background-color: #d35400" data-color="#d35400"></div>
-        <div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
-        <div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
-    </div>
-    -->
-
-    <!--<img class="Background" src="../images/layer_1.png" />-->
     <script src="../scripts/js_drawPage.js"></script>
 </body>
 

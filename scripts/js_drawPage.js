@@ -1,20 +1,25 @@
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
 const color = document.getElementById("Color");
+const colorOptions = Array.from(document.getElementsByClassName("color-option"));
 const brush = document.getElementById("Brush");
 const erase = document.getElementById("Erase");
 const range = document.getElementById("Range");
 const startTimerBtn = document.getElementById("startTimer");
 const clearCanvasBtn = document.getElementById("clearCanvas");
+const saveCanvasBtn = document.getElementById("saveCanvas");
+const loadCanvasBtn = document.getElementById("loadCanvas");
+const deleteCanvasBtn = document.getElementById("deleteCanvas");
 const timerDisplay = document.getElementById("timerDisplay");
 const wordDisplay = document.getElementById("wordDisplay");
 
 const INITIAL_COLOR = "#2c2c2c";
 const INITIAL_LINEWIDTH = 5.0;
-const CANVAS_SIZE = 500;
+const CANVAS_WIDTH_SIZE = 700;
+const CANVAS_HEIGHT_SIZE = 500;
 
-canvas.width = CANVAS_SIZE;
-canvas.height = CANVAS_SIZE;
+canvas.width = CANVAS_WIDTH_SIZE;
+canvas.height = CANVAS_HEIGHT_SIZE;
 ctx.strokeStyle = INITIAL_COLOR;
 ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = range.value;
@@ -64,7 +69,6 @@ function handleModeChange(event) {
     }
 }
 
-
 function startTimer() {
     const timerDuration = 5000; // 5 seconds for example
     let timeLeft = timerDuration / 1000;
@@ -88,7 +92,6 @@ function startTimer() {
     }, 1000);
 }
 
-
 function handleRangeChange(event) {
     const size = event.target.value;
     ctx.lineWidth = size;
@@ -99,13 +102,56 @@ function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
 }
 
-function onColorChange(event) {
+function onColorChange(event) {     // 색 팔레트 바꾸기
     ctx.strokeStyle = event.target.value;
     ctx.fillStyle = event.target.value;
 }
 
+function onColorClik(event) {   // 색 선택 버튼
+    const colorValue = event.target.dataset.color;
+    ctx.strokeStyle = colorValue;
+    ctx.fillStyle = colorValue;
+    color.value = colorValue;
+}
+
 function clearCanvas() {
-    ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    ctx.clearRect(0, 0, CANVAS_WIDTH_SIZE, CANVAS_HEIGHT_SIZE);
+}
+
+function saveCanvas() {
+    const title = prompt("제목을 입력하세요:");
+    if (!title) return;
+    const dataURL = canvas.toDataURL();
+    let drawings = JSON.parse(localStorage.getItem("drawings")) || [];
+    drawings.push({ title, dataURL });
+    localStorage.setItem("drawings", JSON.stringify(drawings));
+    alert("그림이 저장되었습니다.");
+}
+
+function loadCanvas() {
+    const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
+    const titles = drawings.map(d => d.title).join("\n");
+    const title = prompt(`불러올 그림의 제목을 입력하세요:\n${titles}`);
+    const drawing = drawings.find(d => d.title === title);
+    if (drawing) {
+        const img = new Image();
+        img.src = drawing.dataURL;
+        img.onload = function () {
+            ctx.clearRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+            ctx.drawImage(img, 0, 0);
+        }
+    } else {
+        alert("해당 제목의 그림이 없습니다.");
+    }
+}
+
+function deleteCanvas() {
+    const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
+    const titles = drawings.map(d => d.title).join("\n");
+    const title = prompt(`삭제할 그림의 제목을 입력하세요:\n${titles}`);
+    const newDrawings = drawings.filter(d => d.title !== title);
+    localStorage.setItem("drawings", JSON.stringify(newDrawings));
+    alert("그림이 삭제되었습니다.");
 }
 
 if (canvas) {
@@ -120,3 +166,8 @@ startTimerBtn.addEventListener("click", startTimer);
 range.addEventListener("input", onLineWidthChange);
 color.addEventListener("change", onColorChange);
 clearCanvasBtn.addEventListener("click", clearCanvas);
+saveCanvasBtn.addEventListener("click", saveCanvas);
+loadCanvasBtn.addEventListener("click", loadCanvas);
+deleteCanvasBtn.addEventListener("click", deleteCanvas);
+
+colorOptions.forEach(color => color.addEventListener("click", onColorClik));
