@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		li.innerHTML = `
 		<img class="art" src="${drawing.dataURL}" alt="${drawing.title}" />
 		<img class="frame" src="./images/frame.png" alt="Frame" />
+		<div class="caption"><label class="caption_title">${drawing.title}</label><hr style="margin:3px" /><div class="caption_detail"><label>pixel on canvas</label>
+		<label>600 x 415.03 px</label><label>2024</label></div></div>
 	  `;
 		li.addEventListener("click", () => showModal(drawing.dataURL));
 		cardsContainer.appendChild(li);
@@ -45,11 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
 			// 현재 상태 초기화
 			card.classList.remove("previous", "next");
 
-			if (Math.abs(cardCenter - viewportCenter) < cardHeight / 6) {
+			if (Math.abs(cardCenter - viewportCenter) < cardHeight / 4) {
 				card.classList.remove("previous", "next");
-			} else if (cardCenter < viewportCenter - cardHeight / 6) {
+			} else if (cardCenter < viewportCenter - cardHeight / 4) {
 				card.classList.add("previous");
-			} else if (cardCenter > viewportCenter + cardHeight / 6) {
+			} else if (cardCenter > viewportCenter + cardHeight / 4) {
 				card.classList.add("next");
 			}
 		});
@@ -136,7 +138,7 @@ function showModal(imageSrc) {
 	modalArts.src = imageSrc;
 	modal.classList.add("visible");
 
-	modal.addEventListener("mousemove", (e) => {
+	modalArt.onmousemove = (e) => {
 		const rect = modalArts.getBoundingClientRect();
 		const x = ((e.clientX - rect.left) / rect.width) * 100;
 		const y = ((e.clientY - rect.top) / rect.height) * 100;
@@ -151,15 +153,18 @@ function showModal(imageSrc) {
 				-(y - 50) / 5
 			}deg)`;
 		});
-	});
+	};
 
-	modal.addEventListener("mouseleave", () => {
+	modalArt.onmouseleave = () => {
 		modalArt.style.setProperty("--mouseX", "50%");
 		modalArt.style.setProperty("--mouseY", "50%");
 		modalArt.style.setProperty("--lightX", "50%");
 		modalArt.style.setProperty("--lightY", "50%");
 		modalArt.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg)`;
-	});
+	};
+
+	modal.addEventListener("mousemove", handleMouseMove);
+	modal.addEventListener("mouseleave", handleMouseLeave);
 }
 
 function hideModal(event) {
