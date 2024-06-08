@@ -14,7 +14,6 @@ function showModal(card) {
 	const modal = document.getElementById("modal");
 	const modalContent = modal.querySelector(".modal-content");
 
-	modalContent.style.backgroundImage = `${card.style.backgroundImage}, radial-gradient(circle at center, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0))`;
 	modalContent.style.backgroundSize = card.style.backgroundSize;
 	modalContent.style.backgroundPosition = card.style.backgroundPosition;
 	modal.classList.add("visible");

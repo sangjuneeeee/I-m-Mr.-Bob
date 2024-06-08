@@ -20,6 +20,7 @@ html {
 	justify-content: center;
 	align-items: center;
 	overflow: hidden;
+	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
 }
 
 .layer {
@@ -86,11 +87,6 @@ html {
 	cursor: pointer;
 }
 
-.frame {
-	border-radius: 8px;
-	height: 110%;
-}
-
 .card:hover {
 	transform: scale(1.1);
 }
@@ -99,6 +95,19 @@ html {
 .card.next {
 	transform: scale(0.7);
 	opacity: 0.7;
+}
+
+.frame {
+	border-radius: 8px;
+	height: 110%;
+	z-index: 1;
+}
+
+.art {
+	position: absolute;
+	max-width: 600px;
+	max-height: 415.03px;
+	z-index: 0;
 }
 
 .nav {
@@ -110,6 +119,12 @@ html {
 	width: 30vw;
 	border-radius: 0px 0px 20px 20px;
 	opacity: 0.8;
+	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);
+	transition: 1s ease;
+}
+
+.nav:hover {
+	opacity: 0.9;
 }
 
 .nav > button {
@@ -122,11 +137,37 @@ html {
 	color: white;
 }
 
-.bob {
+/* .bob {
 	position: sticky;
 	width: 30vw;
 	left: 100%;
 	bottom: 0;
+	transition: 1s ease ease-in-out;
+}
+
+.bob:hover {
+	content: url(../images/sangbob.png);
+} */
+
+.image-container {
+	position: sticky;
+	width: 30vw;
+	height: 50vh;
+	left: 100%;
+	bottom: 0;
+	z-index: 2;
+}
+
+.bob {
+	width: 100%;
+	height: 100%;
+	background-image: url(../images/bob.png);
+	background-size: cover;
+	transition: background-image 1s ease-in-out;
+}
+
+.bob:hover {
+	background-image: url(../images/sangbob.png);
 }
 
 .modal {
@@ -161,6 +202,14 @@ html {
 .modalFrame {
 	border-radius: 8px;
 	height: 110%;
+	z-index: 2;
+}
+
+.modalArt {
+	transform: scale(1.3);
+	position: absolute;
+	max-width: 600px;
+	max-height: 415.03px;
 }
 
 .modal.visible {
@@ -172,11 +221,7 @@ html {
 	width: 800px;
 	height: 553.37px;
 	background-image: url("../images/canvas_texture.jpg"),
-		radial-gradient(
-			circle at var(--lightX) var(--lightY),
-			rgba(255, 255, 255, 0.6),
-			rgba(255, 255, 255, 0)
-		);
+		radial-gradient(circle at var(--lightX) var(--lightY), rgb(255, 255, 255), rgba(0, 0, 0, 0.3));
 	background-size: cover;
 	display: flex;
 	justify-content: center;
