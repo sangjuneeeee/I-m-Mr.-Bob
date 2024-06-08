@@ -98,7 +98,7 @@ body {
     border-radius: calc(var(--radius) - var(--border));
     place-items: center;
     color: hsl(0 0% 100% / calc(0.5 + var(--highlight, 0)));
-    transition: background, color;
+    transition: color;
     transition-duration: 0.25s;
     transition-timing-function: var(--ease, ease);
 }
@@ -113,7 +113,7 @@ input:not(:checked)+label:hover {
     content: "";
     width: calc(100% / var(--count));
     height: 100%;
-    background: #65433941;
+    background: #70707041;
     position: absolute;
     border-radius: calc(var(--radius) - var(--border));
     mix-blend-mode: difference;

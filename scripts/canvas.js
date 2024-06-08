@@ -116,6 +116,7 @@ function onColorClik(event) {   // 색 선택 버튼
     color.value = colorValue;
 }
 
+
 function clearCanvas() {
     ctx.clearRect(0, 0, CANVAS_WIDTH_SIZE, CANVAS_HEIGHT_SIZE);
 }

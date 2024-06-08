@@ -23,44 +23,44 @@
 
 	<div class="header">
 		<div id="wordDisplay" class="display">제시어: </div>
-		<div id="timerDisplay" class="display">타이머 : </div>
+		<div id="timerDisplay" class="display">타이머 :
+		</div>
 	</div>
-	<div class="container text-center">
-		<div class="row">
-			<div class="col">
-				<button id="exitPage" class="btn btn-danger">나가기</button>
-				<button type="button" class="btn btn-secondary" id="loadCanvas">불러오기</button>
-				<button type="button" class="btn btn-secondary" id="deleteCanvas">삭제</button>
-				<div class="water-container">
-					<div class="water-fill" id="waterFill"></div>
-				</div>
+	<div class="row">
+		<div class="col">
+			<button id="exitPage" class="btn btn-danger">나가기</button>
+			<button type="button" class="btn btn-secondary" id="loadCanvas">불러오기</button>
+			<button type="button" class="btn btn-secondary" id="deleteCanvas">삭제</button>
+			<div class="water-container">
+				<div class="water-fill" id="waterFill"></div>
 			</div>
-			<div class="col">
-				<button type="button" class="btn btn-secondary" id="startTimer">시작</button>
+		</div>
+		<div class="col">
+			<canvas id="jsCanvas" class="canvas"></canvas>
+		</div>
+		<div class="col">
+			<div class="controls__btns">
 				<button type="button" class="btn btn-secondary" id="clearCanvas">모두 지우기</button>
-				<canvas id="jsCanvas" class="canvas"></canvas>
-			</div>
-			<div class="col">
-				<div class="controls__btns">
-					<div class="tabs">
-						<input type="radio" id="brush" name="tool" value="brush" checked>
-						<label for="brush"><img src="../images/brush.png" alt="brush"></label>
-						<input type="radio" id="erase" name="tool" value="erase">
-						<label for="erase"><img src="../images/eraser.png" alt="erase"></label>
-					</div>
-					<input type="color" id="color" />
-					<input type="range" id="range" min="1" max="10" value="4">
-					<div class="color-options">
-						<div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
-						<div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
-						<div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
-						<div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
-						<div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
-						<div class="color-option" style="background-color: #9b59b6" data-color="#9b59b6"></div>
-						<div class="color-option" style="background-color: #000000" data-color="#34495e"></div>
-					</div>
+				<div class="tabs">
+					<input type="radio" id="brush" name="tool" value="brush" checked>
+					<label for="brush"><img src="../images/brush.png" alt="brush"></label>
+					<input type="radio" id="erase" name="tool" value="erase">
+					<label for="erase"><img src="../images/eraser.png" alt="erase"></label>
 				</div>
+				<input type="color" id="color" />
+				<input type="range" id="range" min="1" max="10" value="4">
 			</div>
+			<button type="button" class="btn btn-secondary" id="startTimer">시작</button>
+			<div class="color-palette">
+				<div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
+				<div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
+				<div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
+				<div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
+				<div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
+				<div class="color-option" style="background-color: #9b59b6" data-color="#9b59b6"></div>
+				<div class="color-option" style="background-color: #000000" data-color="#000000"></div>
+			</div>
+
 		</div>
 	</div>
 	<script src="../scripts/canvas.js"></script>
