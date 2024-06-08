@@ -6,13 +6,12 @@
 	height: 100%;
 	pointer-events: none;
 	z-index: 5;
-	opacity: 0.95;
 }
 
 #loader > div {
 	width: 100vw;
 	height: 12.5%;
-	background: #532e1c;
+	background: #e2e2e2;
 	transition: transform 500ms;
 	transform: translateX(100%);
 	box-shadow: 0 15px 10px rgba(0, 0, 0, 0.2);

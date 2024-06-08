@@ -137,18 +137,6 @@ html {
 	color: white;
 }
 
-/* .bob {
-	position: sticky;
-	width: 30vw;
-	left: 100%;
-	bottom: 0;
-	transition: 1s ease ease-in-out;
-}
-
-.bob:hover {
-	content: url(../images/sangbob.png);
-} */
-
 .image-container {
 	position: sticky;
 	width: 30vw;
@@ -163,7 +151,7 @@ html {
 	height: 100%;
 	background-image: url(../images/bob.png);
 	background-size: cover;
-	transition: background-image 1s ease-in-out;
+	transition: background-image 0.5s ease-in-out;
 }
 
 .bob:hover {
@@ -234,10 +222,8 @@ html {
 /* 커튼 효과를 위한 추가 CSS */
 .curtain-container {
 	position: absolute;
-
 	width: 100vh;
 	height: 100vh;
-
 	pointer-events: none;
 }
 

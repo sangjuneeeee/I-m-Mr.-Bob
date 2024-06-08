@@ -31,27 +31,7 @@
 				<button onclick="showLoaderAndNavigate()">Draw</button>
 			</nav>
 			<div class="cards-container">
-				<ul class="cards">
-					<li class="card" onclick="showModal(this)">
-						<img class="art" src="./images/art.png" alt="img" />
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-				</ul>
+				<ul class="cards" id="cards"></ul>
 			</div>
 			<img class="galleryBackground" src="./images/museum.png" />
 			<!-- <img class="bob" src="./images/bob.png" /> -->
@@ -73,7 +53,7 @@
 
 		<div id="modal" class="modal hidden" onclick="hideModal(event)">
 			<div class="modal-content">
-				<img class="modalArt" src="./images/art.png" alt="img" />
+				<img class="modalArt" alt="img" />
 				<img class="modalFrame" src="./images/frame.png" alt="Frame" />
 			</div>
 		</div>
