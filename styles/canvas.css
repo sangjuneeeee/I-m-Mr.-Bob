@@ -108,7 +108,7 @@ body {
     .canvas,
     .water-container,
     .controls__btns {
-        width: 90%;
+        width: 10%;
         margin: 5px 0px;
     }
 }
@@ -118,4 +118,17 @@ body {
     height: 50px;
     border-radius: 100px;
     margin: 2px 0;
+}
+
+/* 추가된 CSS - 부트스트랩 버튼 색상 덮어쓰기 */
+.btn-secondary {
+    background-color: #876353;
+    border-color: #876353;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #654339;
+    border-color: #654339;
 }

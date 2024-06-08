@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
 		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 	<link rel="stylesheet" href="../styles/canvas.css" />
+	<link rel="stylesheet" href="../styles/style.css" />
 	<link rel="stylesheet" href="../styles/animation.css" />
 	<title>drawPage</title>
 </head>
@@ -20,40 +21,7 @@
 		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 		crossorigin="anonymous"></script>
 
-	<body class="reveal">
-		<div class="main-container">
-			<div class="main-section">
-			</div>
-		</div>
-
-		<!-- 로딩 애니메이션 div -->
-		<div id="loader">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-
-		<script>
-			// 로딩 시 애니메이션
-			document.addEventListener("DOMContentLoaded", function () {
-				setTimeout(() => {
-					document.body.classList.remove("reveal");
-					setTimeout(() => {
-						const loader = document.getElementById("loader");
-						loader.classList.add("hidden");
-					}, 1300);
-				}, 100);
-			});
-		</script>
-	</body>
-
-
-	<div class="header"><br>
+	<div class="header">
 		<div id="wordDisplay" class="display">제시어: </div>
 		<div id="timerDisplay" class="display">타이머 : </div>
 	</div>
@@ -61,7 +29,6 @@
 		<div class="row">
 			<div class="col">
 				<button id="exitPage" class="btn btn-danger">나가기</button>
-				<!--<button type="button" class="btn btn-secondary" id="saveCanvas">저장</button>-->
 				<button type="button" class="btn btn-secondary" id="loadCanvas">불러오기</button>
 				<button type="button" class="btn btn-secondary" id="deleteCanvas">삭제</button>
 				<div class="water-container">
@@ -75,8 +42,12 @@
 			</div>
 			<div class="col">
 				<div class="controls__btns">
-					<button type="button" class="btn btn-secondary" id="brush">브러쉬</button>
-					<button type="button" class="btn btn-secondary" id="erase">지우개</button>
+					<div class="tabs">
+						<input type="radio" id="brush" name="tool" value="brush" checked>
+						<label for="brush"><img src="../images/brush.png" alt="brush"></label>
+						<input type="radio" id="erase" name="tool" value="erase">
+						<label for="erase"><img src="../images/eraser.png" alt="erase"></label>
+					</div>
 					<input type="color" id="color" />
 					<input type="range" id="range" min="1" max="10" value="4">
 					<div class="color-options">

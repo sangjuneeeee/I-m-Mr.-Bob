@@ -8,7 +8,8 @@ html {
 }
 
 .main-container {
-	height: 300vh; /* main-section이 sticky 효과를 가질 범위 설정 */
+	height: 300vh;
+	/* main-section이 sticky 효과를 가질 범위 설정 */
 }
 
 .main-section {
@@ -112,7 +113,7 @@ html {
 	opacity: 0.8;
 }
 
-.nav > button {
+.nav>button {
 	background-color: #532e1c;
 	height: 100%;
 	width: 100%;
@@ -169,8 +170,7 @@ html {
 }
 
 .modal-content:hover {
-	transform: perspective(1000px) rotateY(calc(var(--mouseX) * 1deg))
-		rotateX(calc(var(--mouseY) * 1deg));
+	transform: perspective(1000px) rotateY(calc(var(--mouseX) * 1deg)) rotateX(calc(var(--mouseY) * 1deg));
 }
 
 /* 커튼 효과를 위한 추가 CSS */
