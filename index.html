@@ -1,77 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>I am Mr.Bob</title>
-		<link rel="stylesheet" href="styles/main.css" />
-		<link rel="stylesheet" href="styles/animation.css" />
-	</head>
-	<body>
-		<div class="main-container">
-			<div class="main-section">
-				<img src="./images/layer_1.png" class="layer" id="layer-1" />
-				<img src="./images/layer_0.png" class="layer" id="layer-0" />
-				<img id="logo" src="./images/logo.png" />
 
-				<div class="curtain-container">
-					<div class="curtain-left"></div>
-					<div class="curtain-right"></div>
-				</div>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>I am Mr.Bob</title>
+	<link rel="stylesheet" href="styles/main.css" />
+	<link rel="stylesheet" href="styles/animation.css" />
+</head>
+
+<body>
+	<div class="main-container">
+		<div class="main-section">
+			<img src="./images/layer_1.png" class="layer" id="layer-1" />
+			<img src="./images/layer_0.png" class="layer" id="layer-0" />
+			<img id="logo" src="./images/logo.png" />
+
+			<div class="curtain-container">
+				<div class="curtain-left"></div>
+				<div class="curtain-right"></div>
 			</div>
 		</div>
+	</div>
 
-		<article class="gallery">
-			<nav class="nav">
-				<button onclick="showLoaderAndNavigate()">Draw</button>
-			</nav>
-			<div class="cards-container">
-				<ul class="cards">
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-					<li class="card" onclick="showModal(this)">
-						<img class="frame" src="./images/frame.png" alt="Frame" />
-					</li>
-				</ul>
-			</div>
-			<img class="galleryBackground" src="./images/museum.png" />
-			<img class="bob" src="./images/bob.png" />
-		</article>
-
-		<div id="loader" class="hidden">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+	<article class="gallery">
+		<nav class="nav">
+			<button onclick="showLoaderAndNavigate()">Draw</button>
+		</nav>
+		<div class="cards-container">
+			<ul class="cards">
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+				<li class="card" onclick="showModal(this)">
+					<img class="frame" src="./images/frame.png" alt="Frame" />
+				</li>
+			</ul>
 		</div>
+		<img class="galleryBackground" src="./images/museum.png" />
+		<img class="bob" src="./images/bob.png" />
+	</article>
 
-		<div id="modal" class="modal hidden" onclick="hideModal(event)">
-			<div class="modal-content">
-				<img class="modalFrame" src="./images/frame.png" alt="Frame" />
-			</div>
+	<div id="loader" class="hidden">
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</div>
+
+	<div id="modal" class="modal hidden" onclick="hideModal(event)">
+		<div class="modal-content">
+			<img class="modalFrame" src="./images/frame.png" alt="Frame" />
 		</div>
-		<audio id="bgm" autoplay loop>
-			<source src="./source/bgm.mp3" type="audio/mpeg" />
-			Your browser does not support the audio element.
-		</audio>
+	</div>
+	<audio id="bgm" autoplay loop>
+		<source src="./source/bgm.mp3" type="audio/mpeg" />
+		Your browser does not support the audio element.
+	</audio>
 
-		<script src="scripts/main.js"></script>
-	</body>
+	<script src="scripts/main.js"></script>
+</body>
+
 </html>

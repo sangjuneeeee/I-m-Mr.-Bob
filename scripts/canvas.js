@@ -17,7 +17,7 @@ const exitPageBtn = document.getElementById("exitPage");
 
 const INITIAL_COLOR = "#2c2c2c";
 const INITIAL_LINEWIDTH = 5.0;
-const CANVAS_WIDTH_SIZE = 700;
+const CANVAS_WIDTH_SIZE = 650;
 const CANVAS_HEIGHT_SIZE = 500;
 
 canvas.width = CANVAS_WIDTH_SIZE;
@@ -30,7 +30,7 @@ const MODE_BUTTON = [brush, erase];
 let mode = brush;
 let painting = false;
 
-const words = ["사과", "바나나", "포도", "오렌지", "수박"]; // 미리 저장된 제시어들
+const words = ["사과", "고양이", "노트북", "물고기", "바닷가", "요정", "새", "나무", "호숫가", "밤"]; // 미리 저장된 제시어들
 
 function startPainting() { painting = true; }
 function stopPainting() { painting = false; }
@@ -72,27 +72,35 @@ function handleModeChange(event) {
 }
 
 function startTimer() {
-    const timerDuration = 5000; // 5초
+    const timerDuration = 10000; // 5초
     let timeLeft = timerDuration / 1000;
 
     // 제시어 선택
     const randomIndex = Math.floor(Math.random() * words.length);
     const selectedWord = words[randomIndex];
-    wordDisplay.textContent = `제시어: ${selectedWord}`;
+    wordDisplay.textContent = `${selectedWord}`;
 
-    timerDisplay.textContent = `타이머: ${timeLeft}초`;
+    // 시분초 형식으로 표현
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = Math.floor(timeLeft % 60);
+    timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
     timerInterval = setInterval(() => {
         timeLeft--;
-        timerDisplay.textContent = `타이머: ${timeLeft}초`;
+
+        // 시분초 형식으로 표현
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = Math.floor(timeLeft % 60);
+        timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             alert("시간 종료");
-            saveDrawing(selectedWord);      // 시간이 종료되었을때만 제시어와 그림이 로컬 스토리지에 저장됨
+            saveDrawing(selectedWord);
         }
     }, 1000);
 }
+
 
 function handleRangeChange(event) {
     const size = event.target.value;
@@ -121,7 +129,7 @@ function clearCanvas() {
     ctx.clearRect(0, 0, CANVAS_WIDTH_SIZE, CANVAS_HEIGHT_SIZE);
 }
 
-function saveDrawing(word) {    // ex) 사과_1, 사과_2 형식으로 같은 주제에 대해서는 count+1 형식으로 이름 저장됨
+function saveDrawing(word) {
     let drawings = JSON.parse(localStorage.getItem("drawings")) || [];
     const existingDrawings = drawings.filter(d => d.title.startsWith(word));
     const count = existingDrawings.length;
@@ -134,8 +142,7 @@ function saveDrawing(word) {    // ex) 사과_1, 사과_2 형식으로 같은 �
 }
 
 
-/* main.html에서 사용해야하는 기능 */
-function loadCanvas() { // 저장된 그림 이름을 입력하면 canvas.html 페이지에서 나타남.
+function loadCanvas() {
     const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
     const titles = drawings.map(d => d.title).join("\n");
     const title = prompt(`불러올 그림의 제목을 입력하세요:\n${titles}`);
@@ -144,8 +151,8 @@ function loadCanvas() { // 저장된 그림 이름을 입력하면 canvas.html �
         const img = new Image();
         img.src = drawing.dataURL;
         img.onload = function () {
-            const CANVAS_SIZE_WIDTH = canvas.width; // 캔버스 너비 설정
-            const CANVAS_SIZE_HEIGHT = canvas.height; // 캔버스 높이 설정
+            const CANVAS_SIZE_WIDTH = canvas.width;
+            const CANVAS_SIZE_HEIGHT = canvas.height;
             ctx.clearRect(0, 0, CANVAS_SIZE_WIDTH, CANVAS_SIZE_HEIGHT);
             ctx.drawImage(img, 0, 0, CANVAS_SIZE_WIDTH, CANVAS_SIZE_HEIGHT); // 캔버스 크기에 맞게 이미지를 그립니다
         }
@@ -154,7 +161,6 @@ function loadCanvas() { // 저장된 그림 이름을 입력하면 canvas.html �
     }
 }
 
-/* main.html에서 사용해야하는 기능 */
 function deleteCanvas() {
     const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
     const titles = drawings.map(d => d.title).join("\n");
@@ -165,6 +171,22 @@ function deleteCanvas() {
         localStorage.setItem("drawings", JSON.stringify(newDrawings));
         alert("그림이 삭제되었습니다.");
     }
+}
+
+var animateButton = function (e) {
+
+    e.preventDefault;
+    e.target.classList.remove('animate');
+    e.target.classList.add('animate');
+    setTimeout(function () {
+        e.target.classList.remove('animate');
+    }, 700);
+};
+
+var bubblyButtons = document.getElementsByClassName("bubbly-button");
+
+for (var i = 0; i < bubblyButtons.length; i++) {
+    bubblyButtons[i].addEventListener('click', animateButton, false);
 }
 
 

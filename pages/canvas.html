@@ -21,10 +21,35 @@
 		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
 		crossorigin="anonymous"></script>
 
-	<div class="header">
-		<div id="wordDisplay" class="display">제시어: </div>
-		<div id="timerDisplay" class="display">타이머 :
+	<body class="reveal">
+		<!-- 로딩 애니메이션 div -->
+		<div id="loader">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
 		</div>
+
+		<script>
+			// 로딩 시 애니메이션
+			document.addEventListener("DOMContentLoaded", function () {
+				setTimeout(() => {
+					document.body.classList.remove("reveal");
+					setTimeout(() => {
+						const loader = document.getElementById("loader");
+						loader.classList.add("hidden");
+					}, 1300);
+				}, 100);
+			});
+		</script>
+	</body>
+	<div class="header">
+		<div id="wordDisplay" class="display">Title</div>
+		<div id="timerDisplay" class="test"></div>
 	</div>
 	<div class="row">
 		<div class="col">
@@ -36,7 +61,9 @@
 			</div>
 		</div>
 		<div class="col">
-			<canvas id="jsCanvas" class="canvas"></canvas>
+			<div class="canvas-container">
+				<canvas id="jsCanvas" class="canvas"></canvas>
+			</div>
 		</div>
 		<div class="col">
 			<div class="controls__btns">
@@ -47,11 +74,15 @@
 					<input type="radio" id="erase" name="tool" value="erase">
 					<label for="erase"><img src="../images/eraser.png" alt="erase"></label>
 				</div>
-				<input type="color" id="color" />
 				<input type="range" id="range" min="1" max="10" value="4">
 			</div>
-			<button type="button" class="btn btn-secondary" id="startTimer">시작</button>
+			<div class="parent">
+				<button type="button" class="bubbly-button" id="startTimer">시작</button>
+			</div>
+
 			<div class="color-palette">
+				<input type="color" id="color" />
+				<br>
 				<div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
 				<div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
 				<div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
@@ -63,7 +94,9 @@
 
 		</div>
 	</div>
-	<script src="../scripts/canvas.js"></script>
+	<!--<img class="back" src="../images/backpaint.png"> -->
+	<script src="../scripts/canvas.js">
+	</script>
 </body>
 
 </html>
