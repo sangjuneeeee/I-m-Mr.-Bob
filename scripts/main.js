@@ -1,25 +1,112 @@
 document.addEventListener("DOMContentLoaded", function () {
-	const cardsContainer = document.getElementById("cards");
+	const cardsContainer = document.getElementById("vertical-carousel");
 	const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
 
-	drawings.forEach((drawing) => {
-		const li = document.createElement("li");
-		li.classList.add("card");
-		li.innerHTML = `
-		<img class="art" src="${drawing.dataURL}" alt="${drawing.title}" />
-		<img class="frame" src="./images/frame.png" alt="Frame" />
-		<div class="caption"><label class="caption_title">${drawing.title}</label><hr style="margin:3px" /><div class="caption_detail"><label>pixel on canvas</label>
-		<label>600 x 415.03 px</label><label>2024</label></div></div>
-	  `;
-		li.addEventListener("click", () => showModal(drawing.dataURL));
-		cardsContainer.appendChild(li);
+	// Group drawings by title before "_"
+	const groupedDrawings = drawings.reduce((groups, drawing) => {
+		const key = drawing.title.split("_")[0];
+		if (!groups[key]) {
+			groups[key] = [];
+		}
+		groups[key].push(drawing);
+		return groups;
+	}, {});
+
+	// Create horizontal carousels for each group
+	Object.keys(groupedDrawings).forEach((groupKey) => {
+		const group = groupedDrawings[groupKey];
+		const horizontalCarousel = document.createElement("div");
+		horizontalCarousel.classList.add("horizontal-carousel");
+
+		group.forEach((drawing, index) => {
+			const card = document.createElement("div");
+			card.classList.add("card");
+			card.innerHTML = `
+                <img class="art" src="${drawing.dataURL}" alt="${drawing.title}">
+                <img class="frame" src="./images/frame.png" alt="Frame">
+                <div class="caption">
+                    <label class="caption_title">${drawing.title}</label>
+                    <hr style="margin:3px">
+                    <div class="caption_detail">
+                        <label>pixel on canvas</label>
+                        <label>600 x 415.03 px</label>
+                        <label>2024</label>
+                    </div>
+                </div>
+            `;
+			card.addEventListener("click", () => showModal(drawing.dataURL));
+			horizontalCarousel.appendChild(card);
+		});
+
+		const groupContainer = document.createElement("div");
+		groupContainer.classList.add("group-container");
+		groupContainer.appendChild(horizontalCarousel);
+
+		const buttonWrapper = document.createElement("div");
+		buttonWrapper.classList.add("carousel-button-wrapper");
+
+		const leftButton = document.createElement("button");
+		leftButton.classList.add("carousel-button", "left");
+		leftButton.innerText = "<";
+		leftButton.addEventListener("click", () => scrollCarousel(horizontalCarousel, -1));
+
+		const rightButton = document.createElement("button");
+		rightButton.classList.add("carousel-button", "right");
+		rightButton.innerText = ">";
+		rightButton.addEventListener("click", () => scrollCarousel(horizontalCarousel, 1));
+		// 버튼을 버튼 래퍼에 추가
+		buttonWrapper.appendChild(leftButton);
+		buttonWrapper.appendChild(rightButton);
+
+		// 버튼 래퍼를 그룹 컨테이너에 추가
+		horizontalCarousel.appendChild(buttonWrapper);
+
+		// 그룹 컨테이너를 카드 컨테이너에 추가
+		cardsContainer.appendChild(groupContainer);
+
+		// Update classes initially
+		updateCarouselClasses(horizontalCarousel);
 	});
+
+	function scrollCarousel(carousel, direction) {
+		const cards = Array.from(carousel.querySelectorAll(".card"));
+		if (direction === 1) {
+			carousel.appendChild(cards.shift());
+		} else {
+			carousel.insertBefore(cards.pop(), cards[0]);
+		}
+		updateCarouselClasses(carousel);
+	}
+
+	function updateCarouselClasses(carousel) {
+		const cards = Array.from(carousel.querySelectorAll(".card"));
+		const centerIndex = 0; // 0번 인덱스를 기준으로 중앙에 배치
+
+		cards.forEach((card, index) => {
+			card.classList.remove("previous", "next");
+			if (index === centerIndex) {
+			} else if (index > centerIndex) {
+				card.classList.add("next");
+			} else if (index < centerIndex) {
+				card.classList.add("previous");
+			}
+		});
+
+		// Arrange cards with 0 index in center and others to the right
+		const cardWidth = cards[0].offsetWidth;
+		const carouselWidth = carousel.offsetWidth;
+		const offset = Math.floor(carouselWidth / 2 - cardWidth / 2);
+
+		cards.forEach((card, index) => {
+			card.style.transform = `translateX(${index * (cardWidth + 20) + offset}px)`;
+		});
+	}
 
 	const audio = document.getElementById("bgm");
 	audio.volume = 0.1;
 
 	document.addEventListener("scroll", function () {
-		const cards = document.querySelectorAll(".card");
+		const groups = document.querySelectorAll(".group-container");
 		const layers = document.querySelectorAll(".layer");
 		const logo = document.getElementById("logo");
 
@@ -37,22 +124,22 @@ document.addEventListener("DOMContentLoaded", function () {
 			layer.style.transform = `scale(${scale})`;
 		});
 
-		// 카드 상태 업데이트
-		cards.forEach((card) => {
-			const cardPosition = card.getBoundingClientRect().top;
-			const cardHeight = card.offsetHeight;
-			const cardCenter = cardPosition + cardHeight / 2;
+		// 그룹 상태 업데이트
+		groups.forEach((group) => {
+			const groupPosition = group.getBoundingClientRect().top;
+			const groupHeight = group.offsetHeight;
+			const groupCenter = groupPosition + groupHeight / 2;
 			const viewportCenter = viewportHeight / 2;
 
 			// 현재 상태 초기화
-			card.classList.remove("previous", "next");
+			group.classList.remove("previous", "next");
 
-			if (Math.abs(cardCenter - viewportCenter) < cardHeight / 4) {
-				card.classList.remove("previous", "next");
-			} else if (cardCenter < viewportCenter - cardHeight / 4) {
-				card.classList.add("previous");
-			} else if (cardCenter > viewportCenter + cardHeight / 4) {
-				card.classList.add("next");
+			if (Math.abs(groupCenter - viewportCenter) < groupHeight / 4) {
+				group.classList.remove("previous", "next");
+			} else if (groupCenter < viewportCenter - groupHeight / 4) {
+				group.classList.add("previous");
+			} else if (groupCenter > viewportCenter + groupHeight / 4) {
+				group.classList.add("next");
 			}
 		});
 
@@ -78,27 +165,27 @@ document.addEventListener("DOMContentLoaded", function () {
 	});
 
 	// 스크롤 스냅 함수
-	function snapToCard() {
-		const cards = document.querySelectorAll(".card");
+	function snapToGroup() {
+		const groups = document.querySelectorAll(".group-container");
 		const viewportHeight = window.innerHeight;
 		const viewportCenter = viewportHeight / 2;
-		let closestCard = null;
+		let closestGroup = null;
 		let minDistance = Number.MAX_VALUE;
 
-		cards.forEach((card) => {
-			const cardPosition = card.getBoundingClientRect().top;
-			const cardHeight = card.offsetHeight;
-			const cardCenter = cardPosition + cardHeight / 2;
-			const distance = Math.abs(cardCenter - viewportCenter);
+		groups.forEach((group) => {
+			const groupPosition = group.getBoundingClientRect().top;
+			const groupHeight = group.offsetHeight;
+			const groupCenter = groupPosition + groupHeight / 2;
+			const distance = Math.abs(groupCenter - viewportCenter);
 
 			if (distance < minDistance) {
 				minDistance = distance;
-				closestCard = card;
+				closestGroup = group;
 			}
 		});
 
-		if (closestCard) {
-			closestCard.scrollIntoView({ behavior: "smooth", block: "center" });
+		if (closestGroup) {
+			closestGroup.scrollIntoView({ behavior: "smooth", block: "center" });
 		}
 	}
 
@@ -112,10 +199,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		// main-container가 지나고 난 후에만 스냅 기능이 작동하도록 조건 추가
 		if (scrollY > mainContainerHeight) {
 			window.clearTimeout(isScrolling);
-			isScrolling = setTimeout(snapToCard, 50); // 스냅 트리거 시간을 줄여 빠르게 반응하도록 설정
+			isScrolling = setTimeout(snapToGroup, 50); // 스냅 트리거 시간을 줄여 빠르게 반응하도록 설정
 		}
 	});
 });
+
+function scrollCarousel(carousel, direction) {
+	const cards = carousel.querySelectorAll(".card");
+	if (direction === 1) {
+		carousel.appendChild(cards[0]);
+	} else {
+		carousel.insertBefore(cards[cards.length - 1], cards[0]);
+	}
+}
 
 function showLoaderAndNavigate() {
 	const loader = document.getElementById("loader");
