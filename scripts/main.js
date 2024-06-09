@@ -50,12 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
 		leftButton.innerText = "<";
 		leftButton.addEventListener("click", () => scrollCarousel(horizontalCarousel, -1));
 
+		const deleteButton = document.createElement("button");
+		deleteButton.classList.add("carousel-button", "delete");
+		deleteButton.innerText = "Delete";
+		deleteButton.addEventListener("click", () => deleteCurrentCard(horizontalCarousel));
+
 		const rightButton = document.createElement("button");
 		rightButton.classList.add("carousel-button", "right");
 		rightButton.innerText = ">";
 		rightButton.addEventListener("click", () => scrollCarousel(horizontalCarousel, 1));
+
 		// 버튼을 버튼 래퍼에 추가
 		buttonWrapper.appendChild(leftButton);
+		buttonWrapper.appendChild(deleteButton);
 		buttonWrapper.appendChild(rightButton);
 
 		// 버튼 래퍼를 그룹 컨테이너에 추가
@@ -78,6 +85,36 @@ document.addEventListener("DOMContentLoaded", function () {
 		updateCarouselClasses(carousel);
 	}
 
+	function deleteCurrentCard(carousel) {
+		const cards = Array.from(carousel.querySelectorAll(".card"));
+		if (cards.length === 0) return;
+
+		const currentCard = cards[0];
+		currentCard.classList.add("removing");
+
+		setTimeout(() => {
+			const drawingTitle = currentCard.querySelector(".caption_title").innerText;
+
+			// 로컬 스토리지에서 삭제
+			let drawings = JSON.parse(localStorage.getItem("drawings")) || [];
+			drawings = drawings.filter((drawing) => drawing.title !== drawingTitle);
+			localStorage.setItem("drawings", JSON.stringify(drawings));
+
+			// DOM에서 카드 삭제
+			currentCard.remove();
+			updateCarouselClasses(carousel);
+
+			// Check if all cards are removed and remove group container if true
+			if (carousel.querySelectorAll(".card").length === 0) {
+				groupContainer.classList.add("removing");
+
+				setTimeout(() => {
+					groupContainer.remove();
+				}, 500); // 애니메이션 지속 시간 후 삭제
+			}
+		}, 500); // 애니메이션 지속 시간 후 삭제
+	}
+
 	function updateCarouselClasses(carousel) {
 		const cards = Array.from(carousel.querySelectorAll(".card"));
 		const centerIndex = 0; // 0번 인덱스를 기준으로 중앙에 배치
@@ -85,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		cards.forEach((card, index) => {
 			card.classList.remove("previous", "next");
 			if (index === centerIndex) {
+				card.classList.remove("previous", "next");
 			} else if (index > centerIndex) {
 				card.classList.add("next");
 			} else if (index < centerIndex) {

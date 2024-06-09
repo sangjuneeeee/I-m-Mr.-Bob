@@ -89,13 +89,13 @@ html {
 	background-position: center;
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
-	/* margin-left: 50px; */
-	/* margin-right: 70px; */
 }
 
+/* 부모 요소 때문에 이상해져서 그냥 뺌 */
+/* 
 .card:hover {
-	transform: scale(1.1);
-}
+	transform: scale(1.1) !important;
+} */
 
 .card.previous,
 .card.next {
@@ -361,4 +361,15 @@ html {
 
 .carousel-button:hover {
 	background: rgba(0, 0, 0, 0.8);
+}
+.carousel-button:hover {
+	background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-button.delete {
+	background: rgba(255, 0, 0, 0.5);
+}
+
+.carousel-button.delete:hover {
+	background: rgba(255, 0, 0, 0.8);
 }
