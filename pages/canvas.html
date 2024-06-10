@@ -22,7 +22,6 @@
 		crossorigin="anonymous"></script>
 
 	<body class="reveal">
-		<!-- 로딩 애니메이션 div -->
 		<div id="loader">
 			<div></div>
 			<div></div>
@@ -35,7 +34,17 @@
 		</div>
 
 		<script>
-			// 로딩 시 애니메이션
+			function exitPage() {
+				// 로더를 보이도록 설정
+				const loader = document.getElementById('loader');
+				loader.classList.remove('hidden');
+				loader.classList.add('visible');
+
+				// 애니메이션 작동 후 페이지 이동
+				setTimeout(function () {
+					window.location.href = "../index.html#cards-container";
+				}, 1300); // 애니메이션 시간과 동일하게 설정
+			}
 			document.addEventListener("DOMContentLoaded", function () {
 				setTimeout(() => {
 					document.body.classList.remove("reveal");
@@ -94,7 +103,6 @@
 
 		</div>
 	</div>
-	<!--<img class="back" src="../images/backpaint.png"> -->
 	<script src="../scripts/canvas.js">
 	</script>
 </body>

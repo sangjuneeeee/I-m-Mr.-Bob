@@ -30,7 +30,8 @@ const MODE_BUTTON = [brush, erase];
 let mode = brush;
 let painting = false;
 
-const words = ["사과", "고양이", "노트북", "물고기", "바닷가", "요정", "새", "나무", "호숫가", "밤"]; // 미리 저장된 제시어들
+
+const words = ["사과", "고양이", "노트북", "물고기", "바닷가", "요정", "새", "나무", "호숫가", "밤"]; // 미리 저장한 제시어
 
 function startPainting() { painting = true; }
 function stopPainting() { painting = false; }
@@ -55,6 +56,7 @@ function onMouseMove(event) {
     }
 }
 
+
 function handleModeChange(event) {
     mode = event.target;
     for (let i = 0; i < MODE_BUTTON.length; i++) {
@@ -71,8 +73,9 @@ function handleModeChange(event) {
     }
 }
 
+
 function startTimer() {
-    const timerDuration = 10000; // 5초
+    const timerDuration = 20000; // 30초
     let timeLeft = timerDuration / 1000;
 
     // 제시어 선택
@@ -80,7 +83,6 @@ function startTimer() {
     const selectedWord = words[randomIndex];
     wordDisplay.textContent = `${selectedWord}`;
 
-    // 시분초 형식으로 표현
     const minutes = Math.floor(timeLeft / 60);
     const seconds = Math.floor(timeLeft % 60);
     timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -88,7 +90,6 @@ function startTimer() {
     timerInterval = setInterval(() => {
         timeLeft--;
 
-        // 시분초 형식으로 표현
         const minutes = Math.floor(timeLeft / 60);
         const seconds = Math.floor(timeLeft % 60);
         timerDisplay.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
@@ -112,12 +113,13 @@ function onLineWidthChange(event) {
     ctx.lineWidth = event.target.value;
 }
 
-function onColorChange(event) {     // 색 팔레트 바꾸기
+function onColorChange(event) {
     ctx.strokeStyle = event.target.value;
     ctx.fillStyle = event.target.value;
 }
 
-function onColorClik(event) {   // 색 선택 버튼
+
+function onColorClik(event) {
     const colorValue = event.target.dataset.color;
     ctx.strokeStyle = colorValue;
     ctx.fillStyle = colorValue;
@@ -129,11 +131,12 @@ function clearCanvas() {
     ctx.clearRect(0, 0, CANVAS_WIDTH_SIZE, CANVAS_HEIGHT_SIZE);
 }
 
+
 function saveDrawing(word) {
     let drawings = JSON.parse(localStorage.getItem("drawings")) || [];
     const existingDrawings = drawings.filter(d => d.title.startsWith(word));
     const count = existingDrawings.length;
-    const title = `${word}_${count + 1}`;
+    const title = `${word}`;
     const dataURL = canvas.toDataURL();
 
     drawings.push({ title, dataURL });
@@ -154,7 +157,7 @@ function loadCanvas() {
             const CANVAS_SIZE_WIDTH = canvas.width;
             const CANVAS_SIZE_HEIGHT = canvas.height;
             ctx.clearRect(0, 0, CANVAS_SIZE_WIDTH, CANVAS_SIZE_HEIGHT);
-            ctx.drawImage(img, 0, 0, CANVAS_SIZE_WIDTH, CANVAS_SIZE_HEIGHT); // 캔버스 크기에 맞게 이미지를 그립니다
+            ctx.drawImage(img, 0, 0, CANVAS_SIZE_WIDTH, CANVAS_SIZE_HEIGHT);
         }
     } else {
         alert("그림을 찾을 수 없습니다.");
@@ -174,7 +177,6 @@ function deleteCanvas() {
 }
 
 var animateButton = function (e) {
-
     e.preventDefault;
     e.target.classList.remove('animate');
     e.target.classList.add('animate');
@@ -189,9 +191,8 @@ for (var i = 0; i < bubblyButtons.length; i++) {
     bubblyButtons[i].addEventListener('click', animateButton, false);
 }
 
-
 function exitPage() {
-    window.location.href = "../index.html";
+    window.location.href = "../index.html#cards-container"
 }
 
 if (canvas) {

@@ -21,12 +21,16 @@ body {
 }
 */
 
+body {
+    background-color: #333;
+}
+
 .display {
     font: bold 4em "arial";
     top: -500%;
     color: transparent;
     text-shadow: 0 0 rgba(255, 255, 255, 0.06);
-    background-image: url("https://i.imgur.com/uFpLbYt.png");
+    background-image: url("../images/wave.png");
     -webkit-background-size: 200px 100px;
     background-repeat: repeat-x;
     -webkit-background-clip: text;
@@ -35,6 +39,7 @@ body {
     animation: dir 1s linear infinite,
         size 10s linear infinite alternate;
 }
+
 
 @keyframes dir {
     from {
@@ -132,7 +137,7 @@ body {
     background-repeat: no-repeat;
 }
 
-/* 물시계 */
+/* 물시계 
 .water-container {
     width: 250px;
     height: 450px;
@@ -142,7 +147,9 @@ body {
     align-items: center;
     position: relative;
 }
+*/
 
+/**/
 .water-fill {
     width: 800px;
     height: 800px;
@@ -160,6 +167,8 @@ body {
         transform: rotate(360deg);
     }
 }
+
+/**/
 
 @media (max-width: 768px) {
     .container {
