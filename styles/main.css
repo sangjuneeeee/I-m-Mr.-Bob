@@ -163,7 +163,7 @@ html {
 	opacity: 0.9;
 }
 
-.nav>button {
+.nav > button {
 	background-color: #532e1c;
 	height: 100%;
 	width: 100%;
@@ -241,10 +241,6 @@ html {
 	opacity: 1;
 }
 
-<<<<<<< HEAD
-.modal-content:hover {
-	transform: perspective(1000px) rotateY(calc(var(--mouseX) * 1deg)) rotateX(calc(var(--mouseY) * 1deg));
-=======
 .modal-content {
 	width: 800px;
 	height: 553.37px;
@@ -257,7 +253,6 @@ html {
 	transition: transform 0.1s, box-shadow 0.1s;
 	will-change: transform, background-position;
 	background-blend-mode: multiply;
->>>>>>> main
 }
 
 /* 커튼 효과를 위한 추가 CSS */
@@ -286,9 +281,6 @@ html {
 
 .curtain-right {
 	right: -150%;
-<<<<<<< HEAD
-}
-=======
 }
 
 #bgm {
@@ -382,4 +374,3 @@ html {
 .carousel-button.delete:hover {
 	background: rgba(255, 0, 0, 0.8);
 }
->>>>>>> main
