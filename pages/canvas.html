@@ -1,19 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Canvas Page</title>
-		<link rel="stylesheet" href="../styles/animation.css" />
-	</head>
-	<body class="reveal">
-		<div class="main-container">
-			<div class="main-section">
-				<h1>Canvas Page</h1>
-			</div>
-		</div>
 
-		<!-- 로딩 애니메이션 div -->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+		integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+	<link rel="stylesheet" href="../styles/canvas.css" />
+	<link rel="stylesheet" href="../styles/style.css" />
+	<link rel="stylesheet" href="../styles/animation.css" />
+	<title>drawPage</title>
+</head>
+
+<body>
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+		crossorigin="anonymous"></script>
+
+	<body class="reveal">
 		<div id="loader">
 			<div></div>
 			<div></div>
@@ -26,7 +34,17 @@
 		</div>
 
 		<script>
-			// 로딩 시 애니메이션
+			function exitPage() {
+				// 로더를 보이도록 설정
+				const loader = document.getElementById('loader');
+				loader.classList.remove('hidden');
+				loader.classList.add('visible');
+
+				// 애니메이션 작동 후 페이지 이동
+				setTimeout(function () {
+					window.location.href = "../index.html#cards-container";
+				}, 1300); // 애니메이션 시간과 동일하게 설정
+			}
 			document.addEventListener("DOMContentLoaded", function () {
 				setTimeout(() => {
 					document.body.classList.remove("reveal");
@@ -38,4 +56,55 @@
 			});
 		</script>
 	</body>
+	<div class="header">
+		<div id="wordDisplay" class="display">Title</div>
+		<div id="timerDisplay" class="test"></div>
+	</div>
+	<div class="row">
+		<div class="col">
+			<button id="exitPage" class="btn btn-danger">나가기</button>
+			<button type="button" class="btn btn-secondary" id="loadCanvas">불러오기</button>
+			<button type="button" class="btn btn-secondary" id="deleteCanvas">삭제</button>
+			<div class="water-container">
+				<div class="water-fill" id="waterFill"></div>
+			</div>
+		</div>
+		<div class="col">
+			<div class="canvas-container">
+				<canvas id="jsCanvas" class="canvas"></canvas>
+			</div>
+		</div>
+		<div class="col">
+			<div class="controls__btns">
+				<button type="button" class="btn btn-secondary" id="clearCanvas">모두 지우기</button>
+				<div class="tabs">
+					<input type="radio" id="brush" name="tool" value="brush" checked>
+					<label for="brush"><img src="../images/brush.png" alt="brush"></label>
+					<input type="radio" id="erase" name="tool" value="erase">
+					<label for="erase"><img src="../images/eraser.png" alt="erase"></label>
+				</div>
+				<input type="range" id="range" min="1" max="10" value="4">
+			</div>
+			<div class="parent">
+				<button type="button" class="bubbly-button" id="startTimer">시작</button>
+			</div>
+
+			<div class="color-palette">
+				<input type="color" id="color" />
+				<br>
+				<div class="color-option" style="background-color: #e74c3c" data-color="#e74c3c"></div>
+				<div class="color-option" style="background-color: #e67e22" data-color="#e67e22"></div>
+				<div class="color-option" style="background-color: #f1c40f" data-color="#f1c40f"></div>
+				<div class="color-option" style="background-color: #2ecc71" data-color="#2ecc71"></div>
+				<div class="color-option" style="background-color: #3498db" data-color="#3498db"></div>
+				<div class="color-option" style="background-color: #9b59b6" data-color="#9b59b6"></div>
+				<div class="color-option" style="background-color: #000000" data-color="#000000"></div>
+			</div>
+
+		</div>
+	</div>
+	<script src="../scripts/canvas.js">
+	</script>
+</body>
+
 </html>

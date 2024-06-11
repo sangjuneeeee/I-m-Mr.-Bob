@@ -8,7 +8,8 @@ html {
 }
 
 .main-container {
-	height: 300vh; /* main-section이 sticky 효과를 가질 범위 설정 */
+	height: 300vh;
+	/* main-section이 sticky 효과를 가질 범위 설정 */
 }
 
 .main-section {

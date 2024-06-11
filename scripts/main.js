@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	const cardsContainer = document.getElementById("vertical-carousel");
 	const drawings = JSON.parse(localStorage.getItem("drawings")) || [];
 
-	// Group drawings by title before "_"
+	// 로컬스토리지에서 데이터 분리
 	const groupedDrawings = drawings.reduce((groups, drawing) => {
 		const key = drawing.title.split("_")[0];
 		if (!groups[key]) {
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		return groups;
 	}, {});
 
-	// Create horizontal carousels for each group
+	// 각 객체 카드 생성
 	Object.keys(groupedDrawings).forEach((groupKey) => {
 		const group = groupedDrawings[groupKey];
 		const horizontalCarousel = document.createElement("div");
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		// 그룹 컨테이너를 카드 컨테이너에 추가
 		cardsContainer.appendChild(groupContainer);
 
-		// Update classes initially
+		// 업데이트
 		updateCarouselClasses(horizontalCarousel);
 	});
 
@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			currentCard.remove();
 			updateCarouselClasses(carousel);
 
-			// Check if all cards are removed and remove group container if true
+			// 카드 삭제
 			if (carousel.querySelectorAll(".card").length === 0) {
 				groupContainer.classList.add("removing");
 
@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 			}
 		});
 
-		// Arrange cards with 0 index in center and others to the right
+		// 카드 배치
 		const cardWidth = cards[0].offsetWidth;
 		const carouselWidth = carousel.offsetWidth;
 		const offset = Math.floor(carouselWidth / 2 - cardWidth / 2);

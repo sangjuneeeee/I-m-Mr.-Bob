@@ -1,0 +1,272 @@
+body {
+    background-color: #171429dd;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+    margin: 0;
+    height: 100%;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.867));
+}
+
+/*
+.back {
+    position: fixed;
+    top: -10%;
+    z-index: -5;
+    width: 110%;
+    height: 110%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+*/
+
+body {
+    background-color: #333;
+}
+
+.display {
+    font: bold 4em "arial";
+    top: -500%;
+    color: transparent;
+    text-shadow: 0 0 rgba(255, 255, 255, 0.06);
+    background-image: url("../images/wave.png");
+    -webkit-background-size: 200px 100px;
+    background-repeat: repeat-x;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: dir 1s linear infinite,
+        size 10s linear infinite alternate;
+}
+
+
+@keyframes dir {
+    from {
+        background-position: 0 100%;
+    }
+
+    to {
+        background-position: 200px 100%;
+    }
+}
+
+@keyframes size {
+    from {
+        background-size: 200px 0;
+    }
+
+    to {
+        background-size: 200px 240px;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.canvas-container {
+    position: relative;
+    width: 650px;
+    height: 950px;
+    background-image: url('../images/easel.png');
+    background-size: cover;
+    background-position: center;
+
+}
+
+.canvas {
+    width: 650px;
+    height: 500px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.controls__btns {
+    background-color: rgba(255, 255, 255, 0.907);
+    padding: 8px 8px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.controls__btns button,
+.controls__btns input {
+    margin: 5px 0;
+}
+
+.test {
+    margin-top: 5px;
+    font-weight: normal;
+    font-family: "Playfair Display", serif;
+    font-size: 30px;
+    text-shadow: 0 5px 5px black;
+    color: white;
+}
+
+.Background {
+    position: fixed;
+    top: -19%;
+    z-index: -2;
+    width: 70%;
+    height: 170%;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/* 물시계 
+.water-container {
+    width: 250px;
+    height: 450px;
+    border: 2px solid rgba(255, 255, 255, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+*/
+
+/**/
+.water-fill {
+    width: 800px;
+    height: 800px;
+    position: absolute;
+    z-index: -1;
+    top: -40%;
+    left: 80%;
+    border-radius: 45%;
+    background: rgba(48, 189, 255, 0.8);
+    animation: rotate 5000ms infinite linear;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/**/
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .canvas,
+    .water-container,
+    .controls__btns {
+        width: 10%;
+        margin: 5px 0px;
+    }
+}
+
+
+
+/* 버튼 색상 수정 */
+.btn-secondary {
+    background-color: #876353;
+    border-color: #876353;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus,
+.btn-secondary:active {
+    background-color: #654339;
+    border-color: #654339;
+}
+
+/* 색상 팔레트 */
+.color-palette {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.1, 2, 0.5, 1);
+}
+
+.color-option:hover {
+    transform: scale(1.2, 1.2);
+}
+
+.color-option.active {
+    transform: scale(1.3, 1.3);
+    cursor: default;
+}
+
+.color-option:nth-child(3) {
+    background-color: #e74c3c;
+    box-shadow: 0 7px 25px rgba(231, 76, 60, 0.6);
+}
+
+.color-option:nth-child(4) {
+    background-color: #e67e22;
+    box-shadow: 0 7px 25px rgba(230, 126, 34, 0.6);
+}
+
+.color-option:nth-child(5) {
+    background-color: #f1c40f;
+    box-shadow: 0 7px 25px rgba(241, 196, 15, 0.6);
+}
+
+.color-option:nth-child(6) {
+    background-color: #1abc9c;
+    box-shadow: 0 7px 25px rgba(26, 188, 156, 0.6);
+}
+
+.color-option:nth-child(7) {
+    background-color: #3498db;
+    box-shadow: 0 7px 25px rgba(52, 152, 219, 0.6);
+}
+
+.color-option:nth-child(8) {
+    background-color: #9b59b6;
+    box-shadow: 0 7px 25px rgba(155, 89, 182, 0.6);
+}
+
+.color-option:nth-child(9) {
+    background-color: #000000;
+    box-shadow: 0 7px 25px rgba(16, 0, 22, 0.6);
+}
+
+.paint {
+    position: fixed;
+    top: 0;
+    z-index: -3;
+    background-size: 300% 300%;
+}
