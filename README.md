@@ -1,4 +1,4 @@
-# I-m-Mr.-Bob
+# I'm Mr.Bob
 
 ## 사용 기술
 HTML, CSS, JavaScript
